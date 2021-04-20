@@ -1,1 +1,6 @@
-# SpringBoot-StaffingSystem
+# 这是一个基于Spring-Boot开发的一个员工管理系统
+已实现的功能有如下：
+1、中英国际化
+2、用户登入功能
+3、登入拦截器
+4、员工列表
