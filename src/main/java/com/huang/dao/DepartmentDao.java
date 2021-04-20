@@ -7,6 +7,7 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 
+//部门dao
 @Repository
 public class DepartmentDao {
     //模拟数据库

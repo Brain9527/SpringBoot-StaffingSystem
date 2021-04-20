@@ -5,6 +5,9 @@ import lombok.NoArgsConstructor;
 
 import java.util.Date;
 
+//员工表
+
+
 @Data
 @NoArgsConstructor
 public class Employee {
@@ -21,6 +24,7 @@ public class Employee {
         this.email = email;
         this.gender = gender;
         this.department = department;
+        //默认的创建日期
         this.birth = new Date();
     }
 }

@@ -18,7 +18,7 @@ public class EmployeeController {
     @RequestMapping("/emps")
     public String list(Model model){
         Collection<Employee> employees = employeeDao.getAll();
-        model.addAttribute("smps", employees);
+        model.addAttribute("emps", employees);
         return "emp/list";
     }
 
