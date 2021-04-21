@@ -16,7 +16,7 @@ public class EmployeeDao {
     //模拟数据库
     public static Map<Integer, Employee> employees = null;
     //    主键自增
-    private static Integer initId = 1006;
+    private static Integer initId = 106;
 
     static {
         employees = new HashMap<Integer, Employee>(); //创建一个部门表
