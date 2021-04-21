@@ -12,6 +12,7 @@ import java.util.Map;
 public class DepartmentDao {
     //模拟数据库
     public static Map<Integer, Department> departments = null;
+
     static {
         departments = new HashMap<Integer, Department>(); //创建一个部门表
 

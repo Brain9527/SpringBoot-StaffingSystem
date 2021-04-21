@@ -47,10 +47,10 @@ public class EmployeeController {
 
     //去员工的修改页面
     @GetMapping("/emp/{id}")
-    public String toUpdateEmp(@PathVariable("id")Integer id,Model model){
+    public String toUpdateEmp(@PathVariable("id") Integer id, Model model) {
         //查出原来的数据
         Employee employee = employeeDao.getEmployeeById(id);
-        model.addAttribute("emp",employee);
+        model.addAttribute("emp", employee);
         //查出所有部门信息
         Collection<Department> department = departmentDao.getDepartment();
         model.addAttribute("department", department);
@@ -58,14 +58,14 @@ public class EmployeeController {
     }
 
     @PostMapping("/updateEmp")
-    public String updateEmp(Employee employee){
+    public String updateEmp(Employee employee) {
         employeeDao.save(employee);
         return "redirect:/emps";
     }
 
     //删除员工
     @GetMapping("/delemp/{id}")
-    public String deleteEmp(@PathVariable("id")int id){
+    public String deleteEmp(@PathVariable("id") int id) {
         employeeDao.delete(id);
         return "redirect:/emps";
 

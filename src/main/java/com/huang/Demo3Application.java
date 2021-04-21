@@ -10,7 +10,5 @@ public class Demo3Application {
         SpringApplication.run(Demo3Application.class, args);
         System.out.println("http://localhost:8080/huang/emps");
         System.out.println("程序已就绪");
-
     }
-
 }
