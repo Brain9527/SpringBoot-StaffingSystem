@@ -22,6 +22,7 @@ public class EmployeeController {
     @Autowired
     DepartmentDao departmentDao;
 
+
     @RequestMapping("/emps")
     public String list(Model model) {
         Collection<Employee> employees = employeeDao.getAll();

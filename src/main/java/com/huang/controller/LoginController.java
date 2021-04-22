@@ -17,7 +17,7 @@ public class LoginController {
             @RequestParam("username") String username,
             @RequestParam("password") String password,
             Model model, HttpSession session) {
-        if (!StringUtils.isEmpty(username) && "admin".equals(password)) {
+        if ("admin".equals(username) && "admin".equals(password)) {
             session.setAttribute("loginUser", username);
             return "redirect:/main.html";
         } else {
