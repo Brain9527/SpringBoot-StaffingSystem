@@ -8,7 +8,7 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class Department {
+public class departments {
     private Integer id;
-    private String departmentName;
+    private String department_name;
 }
