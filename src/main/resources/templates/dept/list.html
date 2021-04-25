@@ -48,10 +48,10 @@
 <div class="container-fluid">
     <div class="row">
         <!--模板引擎_侧边框-->
-        <div th:replace="~{commons/commons::sidebar(active='list.html')}"></div>
+        <div th:replace="~{commons/commons::sidebar(active='dept.html')}"></div>
 
         <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
-            <h2><a class="btn btn-sm btn-success" th:href="@{/emp}">添加员工</a></h2>
+            <h2><a class="btn btn-sm btn-success" th:href="@{/add}">添加部门</a></h2>
 
 
             <div class="table-responsive">
@@ -59,30 +59,21 @@
                     <thead>
                     <tr>
                         <th>ID</th>
-                        <th>员工姓名</th>
-                        <th>邮箱</th>
-                        <th>性别</th>
                         <th>部门</th>
-                        <!--                        <th>生日</th>-->
                         <th>操作</th>
                     </tr>
                     </thead>
 
                     <tbody>
-                    <tr th:each="emp:${emps}">
+                    <tr th:each="dept:${departments}">
                         <!--/*@thymesVar id="getId" type=""*/-->
-                        <td th:text="${emp.getId()}"></td>
-                        <td th:text="${emp.getStaffName()}"></td>
-                        <td th:text="${emp.getEmail()}"></td>
-                        <td th:text="${emp.getGender()==0?'女':'男'}"></td>
-                        <td th:text="${departmentsMap.get(emp.getDepartment())}"></td>
-<!--                        <td th:text="${#dates.format(emp.getBirth(),'yyyy-MM-dd HH:mm:ss')}"></td>-->
+                        <td th:text="${dept.getId()}"></td>
+                        <td th:text="${dept.getDepartmentName()}"></td>
                         <td>
-                            <a class="btn btn-sm btn-primary" th:href="@{/emp/}+${emp.getId()}">编辑</a>
-                            <a class="btn btn-sm btn-danger" th:href="@{/delemp/}+${emp.getId()}">删除</a>
+                            <a class="btn btn-sm btn-primary" th:href="@{/dept/}+${dept.getId()}">编辑</a>
+                            <a class="btn btn-sm btn-danger" th:href="@{/deldept/}+${dept.getId()}">删除</a>
                         </td>
                     </tr>
-
                     </tbody>
                 </table>
             </div>

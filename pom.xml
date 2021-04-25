@@ -78,6 +78,13 @@
         <!--            <version>3.0.4.RELEASE</version>-->
         <!--        </dependency>-->
 
+        <!--        使用第三方开源包库 p6spy 打印分析sql-->
+        <dependency>
+            <groupId>p6spy</groupId>
+            <artifactId>p6spy</artifactId>
+            <version>3.9.1</version>
+        </dependency>
+
     </dependencies>
 
     <build>

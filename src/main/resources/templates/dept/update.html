@@ -49,43 +49,20 @@
     <div class="row">
         <!--模板引擎_侧边框-->
         <div th:replace="~{commons/commons::sidebar(active='list.html')}"></div>
-
         <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
-            <h2><a class="btn btn-sm btn-success" th:href="@{/emp}">添加员工</a></h2>
 
 
-            <div class="table-responsive">
-                <table class="table table-striped table-sm">
-                    <thead>
-                    <tr>
-                        <th>ID</th>
-                        <th>员工姓名</th>
-                        <th>邮箱</th>
-                        <th>性别</th>
-                        <th>部门</th>
-                        <!--                        <th>生日</th>-->
-                        <th>操作</th>
-                    </tr>
-                    </thead>
+            <form th:action="@{/updateDept}" method="post">
 
-                    <tbody>
-                    <tr th:each="emp:${emps}">
-                        <!--/*@thymesVar id="getId" type=""*/-->
-                        <td th:text="${emp.getId()}"></td>
-                        <td th:text="${emp.getStaffName()}"></td>
-                        <td th:text="${emp.getEmail()}"></td>
-                        <td th:text="${emp.getGender()==0?'女':'男'}"></td>
-                        <td th:text="${departmentsMap.get(emp.getDepartment())}"></td>
-<!--                        <td th:text="${#dates.format(emp.getBirth(),'yyyy-MM-dd HH:mm:ss')}"></td>-->
-                        <td>
-                            <a class="btn btn-sm btn-primary" th:href="@{/emp/}+${emp.getId()}">编辑</a>
-                            <a class="btn btn-sm btn-danger" th:href="@{/delemp/}+${emp.getId()}">删除</a>
-                        </td>
-                    </tr>
+                <div class="form-group">
+                    <lable>ID</lable>
+                    <input th:value="${dept.id}"  type="text" class="form-control" name="id">
 
-                    </tbody>
-                </table>
-            </div>
+                    <lable>部门名称</lable>
+                    <input th:value="${dept.departmentName}"  type="text" class="form-control" name="departmentName">
+                </div>
+                <button type="submit" class="btn btn-primary">修改</button>
+            </form>
         </main>
     </div>
 </div>
