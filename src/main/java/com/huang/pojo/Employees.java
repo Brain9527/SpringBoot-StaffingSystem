@@ -14,6 +14,7 @@ import java.util.Date;
  */
 @Data
 @NoArgsConstructor
+@AllArgsConstructor
 public class Employees {
     @TableId(type = IdType.AUTO)
     private Integer id;
