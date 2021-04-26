@@ -6,11 +6,13 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-//部门表
+/**
+ * 部门表
+ */
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class Departments {
+public class Department {
     @TableId(type = IdType.AUTO)
     private Integer id;
     private String departmentName;

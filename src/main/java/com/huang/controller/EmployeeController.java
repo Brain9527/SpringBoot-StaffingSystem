@@ -1,36 +1,40 @@
 package com.huang.controller;
 
-import com.huang.dao.DepartmentsMapper;
-import com.huang.dao.EmployeesMapper;
-import com.huang.pojo.Departments;
-import com.huang.pojo.Employees;
+import com.huang.dao.DepartmentMapper;
+import com.huang.dao.EmployeeMapper;
+import com.huang.pojo.Department;
+import com.huang.pojo.Employee;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.HashMap;
 import java.util.List;
 
 @Controller
+@RequestMapping("/emp")
 public class EmployeeController {
     @Autowired
-    EmployeesMapper employeesMapper;
+    EmployeeMapper employeeMapper;
     @Autowired
-    DepartmentsMapper departmentsMapper;
+    DepartmentMapper departmentMapper;
 
     /**
      * 遍历所有数据
      *
      * @param model 视图模型
      */
-    @RequestMapping("/emps")
+    @RequestMapping("/")
     public String list(Model model) {
-        List<Employees> employees = employeesMapper.selectList(null);
-        List<Departments> departments = departmentsMapper.selectList(null);
+        List<Employee> employees = employeeMapper.selectList(null);
+        List<Department> departments = departmentMapper.selectList(null);
 
         HashMap<Integer, String> departmentsMap = new HashMap<>();
-        for (Departments department : departments) {
+        for (Department department : departments) {
             departmentsMap.put(department.getId(), department.getDepartmentName());
         }
 
@@ -49,9 +53,9 @@ public class EmployeeController {
      *
      * @param model 视图模式
      */
-    @GetMapping("/emp")
+    @GetMapping("/add")
     public String add(Model model) {
-        List<Departments> departments = departmentsMapper.selectList(null);
+        List<Department> departments = departmentMapper.selectList(null);
         model.addAttribute("Departments", departments);
         return "emp/add";
     }
@@ -59,12 +63,12 @@ public class EmployeeController {
     /**
      * 增加员工接口
      *
-     * @param employees 员工实体
+     * @param employee 员工实体
      */
-    @RequestMapping(value = "/emp", method = RequestMethod.POST)
-    public String doAdd(Employees employees) {
-        employeesMapper.insert(employees);
-        return "redirect:/emps";
+    @PostMapping("/add")
+    public String doAdd(Employee employee) {
+        employeeMapper.insert(employee);
+        return "redirect:/emp/";
     }
 
     /**
@@ -73,12 +77,12 @@ public class EmployeeController {
      * @param model 视图模式
      * @param id    要修改的员工ID
      */
-    @GetMapping("/emp/{id}")
+    @GetMapping("/{id}")
     public String update(Model model, @PathVariable("id") int id) {
-        Employees employees = employeesMapper.selectById(id);
-        model.addAttribute("emp", employees);
+        Employee employee = employeeMapper.selectById(id);
+        model.addAttribute("emp", employee);
 
-        List<Departments> departments = departmentsMapper.selectList(null);
+        List<Department> departments = departmentMapper.selectList(null);
         model.addAttribute("depts", departments);
         return "emp/update";
     }
@@ -86,12 +90,12 @@ public class EmployeeController {
     /**
      * 更改员工接口
      *
-     * @param employees 员工实体
+     * @param employee 员工实体
      */
-    @PostMapping("/updateEmp")
-    public String doUpdate(Employees employees) {
-        employeesMapper.updateById(employees);
-        return "redirect:/emps";
+    @PostMapping("/{id}")
+    public String doUpdate(Employee employee) {
+        employeeMapper.updateById(employee);
+        return "redirect:/emp/";
     }
 
     /**
@@ -99,9 +103,9 @@ public class EmployeeController {
      *
      * @param id 要删除的员工ID
      */
-    @GetMapping("/delemp/{id}")
+    @GetMapping("/delete/{id}")
     public String del(@PathVariable("id") int id) {
-        int i = employeesMapper.deleteById(id);
-        return "redirect:/emps";
+        int i = employeeMapper.deleteById(id);
+        return "redirect:/emp/";
     }
 }

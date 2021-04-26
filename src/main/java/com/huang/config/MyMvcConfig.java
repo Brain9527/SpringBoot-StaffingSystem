@@ -25,11 +25,17 @@ public class MyMvcConfig implements WebMvcConfigurer {
         return new MyLocaleResolver();
     }
 
+    @Bean
+    public LoginHandlerInterceptor loginHandlerInterceptor() {
+        return new LoginHandlerInterceptor();
+    }
+
     //拦截器
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
-        registry.addInterceptor(new LoginHandlerInterceptor())
-                .addPathPatterns("/**").excludePathPatterns("/index.html", "/", "/user/login", "/css/*", "/js/**", "/img/**","/regs");
+        registry.addInterceptor(loginHandlerInterceptor())
+                .addPathPatterns("/**")
+                .excludePathPatterns("/index.html", "/", "/user/login", "/css/*", "/js/**", "/img/**", "/regs");
 
     }
 }

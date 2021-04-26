@@ -1,11 +1,11 @@
 package com.huang;
 
 import com.huang.dao.ConsumerMapper;
-import com.huang.dao.DepartmentsMapper;
-import com.huang.dao.EmployeesMapper;
+import com.huang.dao.DepartmentMapper;
+import com.huang.dao.EmployeeMapper;
 import com.huang.pojo.Consumer;
-import com.huang.pojo.Departments;
-import com.huang.pojo.Employees;
+import com.huang.pojo.Department;
+import com.huang.pojo.Employee;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -16,9 +16,9 @@ import java.util.List;
 @SpringBootTest
 public class SpringBootStaffingSystemApplicationTests {
     @Autowired
-    private DepartmentsMapper departmentsMapper;
+    private DepartmentMapper departmentMapper;
     @Autowired
-    private EmployeesMapper employeesMapper;
+    private EmployeeMapper employeeMapper;
     @Autowired
     private ConsumerMapper consumerMapper;
 
@@ -26,7 +26,7 @@ public class SpringBootStaffingSystemApplicationTests {
     //遍历所有部门数据
     @Test
     public void contextLoads() {
-        List<Departments> departments = departmentsMapper.selectList(null);
+        List<Department> departments = departmentMapper.selectList(null);
         departments.forEach(System.out::println);
 
     }
@@ -34,7 +34,7 @@ public class SpringBootStaffingSystemApplicationTests {
     //遍历所有人员数据
     @Test
     public void TraverseInformation() {
-        List<Employees> employees = employeesMapper.selectList(null);
+        List<Employee> employees = employeeMapper.selectList(null);
         employees.forEach(System.out::println);
     }
 
@@ -51,22 +51,22 @@ public class SpringBootStaffingSystemApplicationTests {
     //增加部门数据
     @Test
     public void AddDepartments() {
-        Departments departments = new Departments();
-        departments.setId(101);
-        departments.setDepartmentName("人才部");
-        departmentsMapper.insert(departments);
+        Department department = new Department();
+        department.setId(101);
+        department.setDepartmentName("人才部");
+        departmentMapper.insert(department);
     }
 
 
     //增加人员数据
     @Test
     public void AddEmployees() {
-        Employees employees = new Employees();
-        employees.setId(104);
-        employees.setStaffName("小七");
-        employees.setEmail("12123131@qq.com");
-        employees.setGender(1);
-        employeesMapper.insert(employees);
+        Employee employee = new Employee();
+        employee.setId(104);
+        employee.setStaffName("小七");
+        employee.setEmail("12123131@qq.com");
+        employee.setGender(1);
+        employeeMapper.insert(employee);
     }
 
     //添加用户
@@ -82,14 +82,14 @@ public class SpringBootStaffingSystemApplicationTests {
     //根据部门id删除部门数据
     @Test
     public void DeleteDepartments() {
-        int i = departmentsMapper.deleteById(106);
+        int i = departmentMapper.deleteById(106);
         System.out.println("删除成功");
     }
 
     //根据id删除人员数据
     @Test
     public void DeleteEmployees() {
-        int i = employeesMapper.deleteById(127);
+        int i = employeeMapper.deleteById(127);
         System.out.println("删除成功");
     }
     //根据id删除用户数据
@@ -104,21 +104,21 @@ public class SpringBootStaffingSystemApplicationTests {
     //修改部门数据
     @Test
     public void UpdateDepartments() {
-        Departments departments = new Departments();
-        departments.setId(105);
-        departments.setDepartmentName("人才部");
-        departmentsMapper.updateById(departments);
+        Department department = new Department();
+        department.setId(105);
+        department.setDepartmentName("人才部");
+        departmentMapper.updateById(department);
     }
 
     //修改人员数据
     @Test
     public void UpdateEmployees() {
-        Employees employees = new Employees();
-        employees.setId(101);
-        employees.setStaffName("小非");
-        employees.setEmail("12222222@qq.com");
-        employees.setGender(1);
-        Integer result = employeesMapper.updateById(employees);
+        Employee employee = new Employee();
+        employee.setId(101);
+        employee.setStaffName("小非");
+        employee.setEmail("12222222@qq.com");
+        employee.setGender(1);
+        Integer result = employeeMapper.updateById(employee);
         System.out.println("employees:" + result);
     }
 
@@ -139,11 +139,11 @@ public class SpringBootStaffingSystemApplicationTests {
     //根据部门id查询部门数据
     @Test
     public void SelectDepartments() {
-        Departments departments = departmentsMapper.selectById(101);
-        if (departments == null) {
+        Department department = departmentMapper.selectById(101);
+        if (department == null) {
             System.out.println("未查询到此id的部门信息");
         } else {
-            System.out.println(departments);
+            System.out.println(department);
 
         }
     }
@@ -151,11 +151,11 @@ public class SpringBootStaffingSystemApplicationTests {
     //根据人员id查询人员数据
     @Test
     public void selectEmployees() {
-        Employees employees = employeesMapper.selectById(104);
-        if (employees == null) {
+        Employee employee = employeeMapper.selectById(104);
+        if (employee == null) {
             System.out.println("未查询到此id的人员数据");
         } else {
-            System.out.println(employees);
+            System.out.println(employee);
         }
     }
 

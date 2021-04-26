@@ -1,13 +1,11 @@
 package com.huang.dao;
 
-import com.baomidou.mybatisplus.annotation.TableName;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import com.huang.pojo.Employees;
+import com.huang.pojo.Department;
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Component;
 
 @Mapper
 @Component
-@TableName("employees")
-public interface EmployeesMapper  extends BaseMapper<Employees> {
+public interface DepartmentMapper extends BaseMapper<Department> {
 }

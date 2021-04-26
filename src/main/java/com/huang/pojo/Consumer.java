@@ -6,6 +6,9 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+/**
+ * 顾客表
+ */
 @Data
 @NoArgsConstructor
 @AllArgsConstructor

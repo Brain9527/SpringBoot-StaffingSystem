@@ -17,11 +17,11 @@ public class MyLocaleResolver implements LocaleResolver {
 
         Locale locale = Locale.getDefault(); //如果没有就使用默认的
         //如果请求的连接携带了国际化的参数
-        if(!StringUtils.isEmpty(language)){
+        if (!StringUtils.isEmpty(language)) {
             //zh_CN
             String[] split = language.split("_");
             //国家，地区
-            locale = new Locale(split[0],split[1]);
+            locale = new Locale(split[0], split[1]);
         }
         return locale;
     }
