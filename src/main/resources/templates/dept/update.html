@@ -48,15 +48,15 @@
 <div class="container-fluid">
     <div class="row">
         <!--模板引擎_侧边框-->
-        <div th:replace="~{commons/commons::sidebar(active='list.html')}"></div>
+        <div th:replace="~{commons/commons::sidebar(active='dept.html')}"></div>
         <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
 
 
             <form th:action="@{/updateDept}" method="post">
 
                 <div class="form-group">
-                    <lable>ID</lable>
-                    <input th:value="${dept.id}"  type="text" class="form-control" name="id">
+<!--                    <lable>ID</lable>-->
+                    <input style="display:none" th:value="${dept.id}"  type="text" class="form-control" name="id">
 
                     <lable>部门名称</lable>
                     <input th:value="${dept.departmentName}"  type="text" class="form-control" name="departmentName">
