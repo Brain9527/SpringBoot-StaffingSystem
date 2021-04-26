@@ -8,6 +8,7 @@ import lombok.NoArgsConstructor;
 
 @Data
 @NoArgsConstructor
+@AllArgsConstructor
 public class Consumer {
     @TableId(type = IdType.AUTO)
     public Integer userid;

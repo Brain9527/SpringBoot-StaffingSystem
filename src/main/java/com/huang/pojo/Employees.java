@@ -6,14 +6,13 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.Date;
-
 
 /**
  * 员工表
  */
 @Data
 @NoArgsConstructor
+@AllArgsConstructor
 public class Employees {
     @TableId(type = IdType.AUTO)
     private Integer id;
