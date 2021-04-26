@@ -8,12 +8,12 @@ import lombok.NoArgsConstructor;
 
 import java.util.Date;
 
-//员工表
 
-
+/**
+ * 员工表
+ */
 @Data
 @NoArgsConstructor
-@AllArgsConstructor
 public class Employees {
     @TableId(type = IdType.AUTO)
     private Integer id;

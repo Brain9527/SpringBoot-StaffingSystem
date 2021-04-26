@@ -7,14 +7,10 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
-@AllArgsConstructor
 @NoArgsConstructor
 public class Consumer {
     @TableId(type = IdType.AUTO)
     public Integer userid;
     public String username;
     public String password;
-    public Integer rberme;
-
-
 }

@@ -13,11 +13,9 @@ import java.util.Map;
 
 //部门表
 @Data
-@AllArgsConstructor
 @NoArgsConstructor
 public class Departments {
     @TableId(type = IdType.AUTO)
     private Integer id;
     private String departmentName;
-
 }

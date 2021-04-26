@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component;
 
 @Mapper
 @Component
-@TableName("Consumer")
+@TableName("consumer")
 public interface ConsumerMapper extends BaseMapper<Consumer> {
 
 }

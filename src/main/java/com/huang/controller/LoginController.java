@@ -22,53 +22,50 @@ public class LoginController {
 
     @RequestMapping("/user/login")
     public String login(
-            @RequestParam("username") String username1,
-            @RequestParam("password") String password1,
-            Model model, HttpSession session) {
+            @RequestParam("username") String username,
+            @RequestParam("password") String password,
+            Model model
+    ) {
         HashMap<String, Object> map = new HashMap<>();
-        map.put("username", username1);
-        map.put("password", password1);
+        map.put("username", username);
+        map.put("password", password);
         List<Consumer> consumers = consumerMapper.selectByMap(map);
         System.out.println(consumers);
-        boolean empty = CollectionUtils.isEmpty(consumers);
-        System.out.println(empty);
-        if (empty) {
+
+        if (CollectionUtils.isEmpty(consumers)) {
             //告诉用户，你登录失败了
             model.addAttribute("msg", "用户名或者密码错误！");
             return "index";
-
         } else {
             return "redirect:/main.html";
         }
     }
 
+    @RequestMapping("/user/logout")
+    public String logout(HttpSession session) {
+        session.invalidate();
+        return "redirect:/index.html";
 
-        @RequestMapping("/user/logout")
-        public String logout (HttpSession session){
-            session.invalidate();
-            return "redirect:/index.html";
+    }
 
-        }
+    @GetMapping("/regs")
+    public String add(Model model) {
+        List<Consumer> consumers = consumerMapper.selectList(null);
+        model.addAttribute("Consumer", consumers);
+        return "login/reg";
+    }
 
-        @GetMapping("/regs")
-        public String add (Model model){
-            List<Consumer> consumers = consumerMapper.selectList(null);
-            model.addAttribute("Consumer", consumers);
-            return "login/reg";
-        }
+    @PostMapping("/user/login/zc")
+    public String zc(Consumer consumer) {
+        consumerMapper.insert(consumer);
+//        System.out.println(consumer);
+        return "redirect:/main.html";
+    }
 
-        @PostMapping("/user/login/zc")
-        public String zc (Consumer consumer){
-            consumerMapper.insert(consumer);
-//        System.out.println(consumers);
-            return "redirect:/main.html";
-
-        }
 //    @GetMapping("/new")
 //    public String dda(Model model){
 //        return "reg/new";
 //
 //    }
 
-
-    }
+}

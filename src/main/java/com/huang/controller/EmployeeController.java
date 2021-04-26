@@ -19,7 +19,11 @@ public class EmployeeController {
     @Autowired
     DepartmentsMapper departmentsMapper;
 
-    //遍历所有数据
+    /**
+     * 遍历所有数据
+     *
+     * @param model 视图模型
+     */
     @RequestMapping("/emps")
     public String list(Model model) {
         List<Employees> employees = employeesMapper.selectList(null);
@@ -40,25 +44,37 @@ public class EmployeeController {
 //        Controller 控制器层
     }
 
-
-    //  添加员工页面
+    /**
+     * 添加员工页面
+     *
+     * @param model 视图模式
+     */
     @GetMapping("/emp")
-    public String toAddpages(Model model) {
+    public String add(Model model) {
         List<Departments> departments = departmentsMapper.selectList(null);
         model.addAttribute("Departments", departments);
         return "emp/add";
     }
 
-    //增加员工接口
+    /**
+     * 增加员工接口
+     *
+     * @param employees 员工实体
+     */
     @RequestMapping(value = "/emp", method = RequestMethod.POST)
-    public String save(Employees employees) {
+    public String doAdd(Employees employees) {
         employeesMapper.insert(employees);
         return "redirect:/emps";
     }
 
-    //更改员工
+    /**
+     * 更改员工页面
+     *
+     * @param model 视图模式
+     * @param id    要修改的员工ID
+     */
     @GetMapping("/emp/{id}")
-    public String toupdateEmp(Model model, @PathVariable("id") int id) {
+    public String update(Model model, @PathVariable("id") int id) {
         Employees employees = employeesMapper.selectById(id);
         model.addAttribute("emp", employees);
 
@@ -67,16 +83,24 @@ public class EmployeeController {
         return "emp/update";
     }
 
-    //更改员工接口
+    /**
+     * 更改员工接口
+     *
+     * @param employees 员工实体
+     */
     @PostMapping("/updateEmp")
-    public String updateEmp(Employees employees) {
+    public String doUpdate(Employees employees) {
         employeesMapper.updateById(employees);
         return "redirect:/emps";
     }
 
-    //删除员工
+    /**
+     * 删除员工
+     *
+     * @param id 要删除的员工ID
+     */
     @GetMapping("/delemp/{id}")
-    public String DeleteEmployees(@PathVariable("id") int id) {
+    public String del(@PathVariable("id") int id) {
         int i = employeesMapper.deleteById(id);
         return "redirect:/emps";
     }
