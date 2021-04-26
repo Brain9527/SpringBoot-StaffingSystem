@@ -47,6 +47,7 @@ public class DepartmentController {
         return "redirect:/depts";
     }
 
+//    更新部门
     @GetMapping("/dept/{id}")
     public String toupdateDept(Model model, @PathVariable("id") int id) {
         Departments departments = departmentsMapper.selectById(id);
@@ -58,7 +59,6 @@ public class DepartmentController {
 
     @PostMapping("/updateDept")
     public String toupdateDept(Departments departments){
-
         departmentsMapper.updateById(departments);
         return "redirect:/depts";
 
