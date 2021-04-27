@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 
+
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -15,7 +16,8 @@
 
 <body class="text-center">
 
-<form class="form-signin" th:action="@{/user/login}" id="loginForm" method="post">
+<form class="form-signin" id="loginForm" method="post" name="logInTo" onsubmit="return validateForm()"
+      th:action="@{/user/login}">
 
 
     <img class="mb-4" th:src="@{/img/bootstrap-solid.svg}" alt="" width="72" height="72">
@@ -24,29 +26,97 @@
     <p style="color: red" th:text="${msg}" th:if="${not #strings.isEmpty(msg)}"></p>
 
 
-    <input type="text" name="username" class="form-control" th:placeholder="#{login.username}" required="" autofocus="">
+    <input class="form-control" id="account" name="username" th:placeholder="#{login.username}" type="text">
 
-    <input type="password" name="password" class="form-control" th:placeholder="#{login.password}" required="">
+    <input class="form-control" id="pwd" name="password" th:placeholder="#{login.password}" type="password">
 
     <div class="checkbox mb-3">
         <label>
-            <input type="checkbox" value="1">[[#{login.remember}]]
+            <input id="rememberMe" type="checkbox">[[#{login.remember}]]
         </label>
 
     </div>
 
-
-
-    <button class="btn btn-lg btn-primary btn-block" type="submit">[[#{login.btn}]]</button>
-
-    <el-row>
-        <a class="btn btn-lg btn-check" th:href="@{/regs}" >注册</a>
-    </el-row>
+    <button class="btn btn-lg btn-primary btn-block" id="loginBtn" type="submit">[[#{login.btn}]]</button>
+    <!--        <a class="btn btn-lg btn-check" th:href="@{/regs}">[[#{login.registered}]]</a>-->
+    <button class="btn btn-lg btn-primary btn-block my-2 " type="submit">[[#{login.registered}]]</button>
     <p class="mt-5 mb-3 text-muted">© 2017-2018</p>
     <a class="btn btn-sm" th:href="@{/index.html(1='zh_CN')}">中文</a>
     <a class="btn btn-sm" th:href="@{/index.html(1='en_US')}">English</a>
 </form>
+<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+<script th:src="@{/js/my.js}"></script>
 
+<script>
+    $(function () {
+        initView();
+        $("#loginBtn").click(function () {
+            if ($("#rememberMe").is(":checked")) {
+                setCookie("cookie_account", $("#account").val());
+                setCookie("cookie_password", $("#pwd").val());
+                setCookie("rememberMe", true);
+            } else {
+                delCookie("cookie_account");
+                delCookie("cookie_password");
+                delCookie("rememberMe");
+            }
+            window.location.reload()
+        });
+    });
+
+    function initView() {
+        if (getCookie("cookie_account")) {
+            $("#account").val(getCookie("cookie_account"));
+        }
+        if (getCookie("cookie_password")) {
+            $("#pwd").val(getCookie("cookie_password"));
+        }
+        if (getCookie("rememberMe")) {
+            $("#rememberMe").attr("checked", getCookie("rememberMe"));
+        }
+        $("#account").focus(function () {
+            this.select();
+        });
+        $("#pwd").focus(function () {
+            this.select();
+        });
+    }
+
+    /**
+     * 写入cookie
+     * @param name  cookie 名
+     * @param value  cookie 值
+     */
+    function setCookie(name, value) {
+        var Days = 30; //此 cookie 将被保存 30 天
+        var exp = new Date();
+        exp.setTime(exp.getTime() + Days * 24 * 60 * 60 * 1000);
+        document.cookie = name + "=" + escape(value) + ";expires=" + exp.toGMTString();
+    }
+
+    /**
+     * 删除cookie
+     * @param name
+     */
+    function delCookie(name) {
+        var exp = new Date();
+        exp.setTime(exp.getTime() - 1);
+        var cval = getCookie(name);
+        if (cval != null) document.cookie = name + "=" + cval + ";expires=" + exp.toGMTString();
+    }
+
+    /**
+     * 读取cookie
+     * @param name
+     * @returns
+     */
+    function getCookie(name) {
+        var arr = document.cookie.match(new RegExp("(^| )" + name + "=([^;]*)(;|$)"));
+        if (arr != null)
+            return unescape(arr[2]);
+        return null;
+    }
+</script>
 </body>
 
 </html>
