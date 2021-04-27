@@ -7,7 +7,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.CollectionUtils;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -38,34 +37,34 @@ public class LoginController {
             return "index";
 
         } else {
-            session.setAttribute("loginUser",username);
+            session.setAttribute("loginUser", username);
             System.out.println(session);
             return "redirect:/main.html";
         }
     }
 
 
-        @RequestMapping("/user/logout")
-        public String logout (HttpSession session){
-            session.invalidate();
-            return "redirect:/index.html";
+    @RequestMapping("/user/logout")
+    public String logout(HttpSession session) {
+        session.invalidate();
+        return "redirect:/index.html";
 
-        }
+    }
 
-        @GetMapping("/regs")
-        public String add (Model model){
-            List<Consumer> consumers = consumerMapper.selectList(null);
-            model.addAttribute("Consumer", consumers);
-            return "login/reg";
-        }
+    @GetMapping("/regs")
+    public String add(Model model) {
+        List<Consumer> consumers = consumerMapper.selectList(null);
+        model.addAttribute("Consumer", consumers);
+        return "login/reg";
+    }
 
-        @PostMapping("/user/login/zc")
-        public String zc (Consumer consumer){
-            consumerMapper.insert(consumer);
+    @RequestMapping("/user/login/zc")
+    public String zc(Consumer consumer) {
+        consumerMapper.insert(consumer);
 //        System.out.println(consumers);
-            return "redirect:/main.html";
+        return "redirect:/index.html";
+    }
 
-        }
 //    @GetMapping("/new")
 //    public String dda(Model model){
 //        return "reg/new";
@@ -73,4 +72,4 @@ public class LoginController {
 //    }
 
 
-    }
+}

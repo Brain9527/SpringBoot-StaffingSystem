@@ -62,7 +62,7 @@ public class DepartmentController {
      * 更新部门
      *
      * @param model 视图模型
-     * @param id 要更新的部门ID
+     * @param id    要更新的部门ID
      */
     @GetMapping("/dept/{id}")
     public String update(Model model, @PathVariable("id") int id) {

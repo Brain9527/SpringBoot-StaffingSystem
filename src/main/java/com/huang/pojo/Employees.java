@@ -18,7 +18,9 @@ public class Employees {
     private Integer id;
     private String staffName;
     private String email;
-    /** 0:女  1:男 */
+    /**
+     * 0:女  1:男
+     */
     private Integer gender;
     private Integer department;
 }

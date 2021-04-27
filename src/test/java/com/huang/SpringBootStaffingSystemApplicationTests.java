@@ -66,6 +66,7 @@ public class SpringBootStaffingSystemApplicationTests {
         employees.setStaffName("小七");
         employees.setEmail("12123131@qq.com");
         employees.setGender(1);
+        employees.setDepartment(101);
         employeesMapper.insert(employees);
     }
 

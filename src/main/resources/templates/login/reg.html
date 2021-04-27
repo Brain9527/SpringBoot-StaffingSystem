@@ -15,27 +15,17 @@
 
 <body class="text-center">
 
-<form class="form-signin" th:action="@{/user/login/zc/}" id="loginForm" method="post" th:href="@{/reg}">
-
-
+<form class="form-signin" id="loginForm" method="post" name="regForm" th:action="@{/user/login/zc}" th:href="@{/reg}">
     <img class="mb-4" th:src="@{/img/bootstrap-solid.svg}" alt="" width="72" height="72">
     <h1 class="h3 mb-3 font-weight-normal">请注册</h1>
-
-
     <p style="color: red" th:text="${msg}" th:if="${not #strings.isEmpty(msg)}"></p>
-
     <input type="text" name="username" class="form-control" th:placeholder="#{login.username}" required="" autofocus="">
-
-    <input type="password" name="password" class="form-control" th:placeholder="#{login.password}" required="">
-
-
-
-
+    <input class="form-control my-2" name="password" required="" th:placeholder="#{login.password}" type="password">
+    <input class="form-control" name="repeatPassword" required="" th:placeholder="#{login.repassword}" type="password">
     <button class="btn btn-lg btn-primary btn-block" type="submit">[[注册]]</button>
-
-
 </form>
+<script>
 
-</body>
-
-</html>
+</script>
+</body><!---->
+</html><!---->

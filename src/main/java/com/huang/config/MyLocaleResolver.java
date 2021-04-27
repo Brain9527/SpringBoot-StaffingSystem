@@ -13,15 +13,15 @@ public class MyLocaleResolver implements LocaleResolver {
     @Override
     public Locale resolveLocale(HttpServletRequest request) {
         //获取请求的语言参数
-        String language = request.getParameter("1");
+        String language = request.getParameter("lang");
 
         Locale locale = Locale.getDefault(); //如果没有就使用默认的
         //如果请求的连接携带了国际化的参数
-        if(!StringUtils.isEmpty(language)){
+        if (!StringUtils.isEmpty(language)) {
             //zh_CN
             String[] split = language.split("_");
             //国家，地区
-            locale = new Locale(split[0],split[1]);
+            locale = new Locale(split[0], split[1]);
         }
         return locale;
     }

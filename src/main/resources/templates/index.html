@@ -25,25 +25,24 @@
 
     <p style="color: red" th:text="${msg}" th:if="${not #strings.isEmpty(msg)}"></p>
 
-
     <input class="form-control" id="account" name="username" th:placeholder="#{login.username}" type="text">
 
     <input class="form-control" id="pwd" name="password" th:placeholder="#{login.password}" type="password">
 
     <div class="checkbox mb-3">
         <label>
-            <input id="rememberMe" type="checkbox">[[#{login.remember}]]
+            <input id="rememberMe" type="checkbox"> [[#{login.remember}]]
         </label>
-
     </div>
 
     <button class="btn btn-lg btn-primary btn-block" id="loginBtn" type="submit">[[#{login.btn}]]</button>
-    <!--        <a class="btn btn-lg btn-check" th:href="@{/regs}">[[#{login.registered}]]</a>-->
-    <button class="btn btn-lg btn-primary btn-block my-2 " type="submit">[[#{login.registered}]]</button>
+    <a class="btn btn-outline-success my-2" th:href="@{/regs}">[[#{login.registered}]]</a>
     <p class="mt-5 mb-3 text-muted">© 2017-2018</p>
-    <a class="btn btn-sm" th:href="@{/index.html(1='zh_CN')}">中文</a>
-    <a class="btn btn-sm" th:href="@{/index.html(1='en_US')}">English</a>
+    <a class="btn btn-sm" th:href="@{/index.html(lang='zh_CN')}">中文</a>
+    <a class="btn btn-sm" th:href="@{/index.html(lang='en_US')}">English</a>
+
 </form>
+
 <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
 <script th:src="@{/js/my.js}"></script>
 
