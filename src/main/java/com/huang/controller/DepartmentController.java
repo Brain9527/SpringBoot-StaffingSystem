@@ -5,8 +5,10 @@ import com.huang.pojo.Departments;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.CollectionUtils;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
 import java.util.List;
 
 @Controller
@@ -62,17 +64,25 @@ public class DepartmentController {
      * 更新部门
      *
      * @param model 视图模型
-     * @param id    要更新的部门ID
+     * @param ids   要更新的部门ID
      */
-    @GetMapping("/dept/{id}")
-    public String update(Model model, @PathVariable("id") int id) {
-        Departments departments = departmentsMapper.selectById(id);
+    @GetMapping("/dept/{ids}")
+    public String update(Model model, @PathVariable("ids") int ids) {
+        Departments departments = departmentsMapper.selectById(ids);
         model.addAttribute("dept", departments);
-        departmentsMapper.updateById(departments);
-
-        return "dept/update";
+        HashMap<String, Object> map = new HashMap<>();
+        String id;
+        map.put("id", ids);
+        List<Departments> departments1 = departmentsMapper.selectByMap(map);
+        boolean empty = CollectionUtils.isEmpty(departments1);
+//        System.out.println(empty);
+        if (empty) {
+            return "redirect:/depts";
+        } else {
+            departmentsMapper.updateById(departments);
+            return "dept/update";
+        }
     }
-
     @PostMapping("/updateDept")
     public String doUpdate(Departments departments) {
         departmentsMapper.updateById(departments);

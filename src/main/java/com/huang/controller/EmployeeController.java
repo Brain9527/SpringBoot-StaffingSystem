@@ -79,15 +79,13 @@ public class EmployeeController {
     public String update(Model model, @PathVariable("id") int id) {
         Employees employees = employeesMapper.selectById(id);
         model.addAttribute("emp", employees);
-
 //        List<Employees> employee = employeesMapper.selectById(map);
         HashMap<String, Object> map = new HashMap<>();
-        String Id;
-        map.put("Id", id);
+        String userId;
+        map.put("userId", id);
         List<Employees> employees1 = employeesMapper.selectByMap(map);
         boolean empty = CollectionUtils.isEmpty(employees1);
-        System.out.println(empty);
-
+//        System.out.println(empty);
         if (empty) {
             return "redirect:/emps";
         } else {
@@ -95,8 +93,6 @@ public class EmployeeController {
             model.addAttribute("depts", departments);
             return "emp/update";
         }
-
-
     }
 
     /**
