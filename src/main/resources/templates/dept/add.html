@@ -50,14 +50,15 @@
         <!--模板引擎_侧边框-->
         <div th:replace="~{commons/commons::sidebar(active='dept.html')}"></div>
         <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
-            <form th:action="@{/add}" method="post">
+            <form method="post" name="departmentAuthentication" onsubmit="return addDepartmentVerify()"
+                  th:action="@{/add}">
 
                 <div class="form-group">
-<!--                    <label>ID</label>-->
-<!--                    <input type="text" class="form-control" name="id">-->
+                    <!--                    <label>ID</label>-->
+                    <!--                    <input type="text" class="form-control" name="id">-->
 
                     <lable>部门名称</lable>
-                    <input type="text" class="form-control" name="departmentName">
+                    <input class="form-control" name="departmentName" required="required" type="text">
                 </div>
 
                 <button type="submit" class="btn btn-primary">添加</button>
@@ -76,6 +77,15 @@
 <!-- Icons -->
 <script type="text/javascript" src="asserts/js/feather.min.js"></script>
 <script>
+    function addDepartmentVerify() {
+        var department = document.forms["departmentAuthentication"]["departmentName"].value;
+        if (department == null || department == "") {
+            alert("部门名字不能为空");
+            return false;
+        }
+
+    }
+
     feather.replace()
 </script>
 
@@ -109,6 +119,8 @@
             }
         }
     });
+
+
 </script>
 
 </body>

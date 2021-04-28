@@ -52,14 +52,17 @@
         <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
 
 
-            <form th:action="@{/updateDept}" method="post">
+            <form method="post" name="departmentAuthentication" onsubmit="return addDepartmentVerify()"
+                  th:action="@{/updateDept}">
 
                 <div class="form-group">
-<!--                    <lable>ID</lable>-->
-                    <input style="display:none" th:value="${dept.id}"  type="text" class="form-control" name="id">
-
-                    <lable>部门名称</lable>
-                    <input th:value="${dept.departmentName}"  type="text" class="form-control" name="departmentName">
+                    <!--                    <lable>ID</lable>-->
+                    <input style="display:none" th:value="${dept.id}" type="text" class="form-control" name="id">
+                    <tr>
+                        <th>部门名称</th>
+                    </tr>
+                    <input class="form-control" name="departmentName" required="required"
+                           th:value="${dept.departmentName}" type="text">
                 </div>
                 <button type="submit" class="btn btn-primary">修改</button>
             </form>
@@ -78,6 +81,15 @@
 <script type="text/javascript" src="asserts/js/feather.min.js"></script>
 <script>
     feather.replace()
+
+    function addDepartmentVerify() {
+        var department = document.forms["departmentAuthentication"]["departmentName"].value;
+        if (department == null || department == "") {
+            alert("部门名字不能为空");
+            return false;
+        }
+
+    }
 </script>
 
 <!-- Graphs -->

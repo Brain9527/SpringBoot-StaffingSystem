@@ -64,6 +64,7 @@ public class EmployeeController {
     @RequestMapping(value = "/emp", method = RequestMethod.POST)
     public String doAdd(Employees employees) {
         employeesMapper.insert(employees);
+
         return "redirect:/emps";
     }
 

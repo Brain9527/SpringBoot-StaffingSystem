@@ -14,8 +14,8 @@
 </head>
 
 <body class="text-center">
-
-<form class="form-signin" id="loginForm" method="post" name="regForm" th:action="@{/user/login/zc}" th:href="@{/reg}">
+<form class="form-signin" id="loginForm" method="post" name="regForm" onsubmit="return validateForm()"
+      th:action="@{/user/login/zc}" th:href="@{/reg}">
     <img class="mb-4" th:src="@{/img/bootstrap-solid.svg}" alt="" width="72" height="72">
     <h1 class="h3 mb-3 font-weight-normal">请注册</h1>
     <p style="color: red" th:text="${msg}" th:if="${not #strings.isEmpty(msg)}"></p>
@@ -23,9 +23,21 @@
     <input class="form-control my-2" name="password" required="" th:placeholder="#{login.password}" type="password">
     <input class="form-control" name="repeatPassword" required="" th:placeholder="#{login.repassword}" type="password">
     <button class="btn btn-lg btn-primary btn-block" type="submit">[[注册]]</button>
-</form>
-<script>
+    <div id="msg" style="display:none" th:text="${msg}">
+    </div>
 
+</form>
+<script type="text/javascript">
+    function validateForm() {
+        var x = document.forms["loginForm"]["password"].value;
+        var y = document.forms["loginForm"]["repeatPassword"].value;
+        if (x !== y) {
+            alert("两次输入的密码不一致");
+            return false;
+        }
+
+    }
 </script>
-</body><!---->
-</html><!---->
+
+</body>
+</html>
