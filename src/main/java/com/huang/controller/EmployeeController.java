@@ -7,6 +7,7 @@ import com.huang.pojo.Employees;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.CollectionUtils;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
@@ -79,9 +80,23 @@ public class EmployeeController {
         Employees employees = employeesMapper.selectById(id);
         model.addAttribute("emp", employees);
 
-        List<Departments> departments = departmentsMapper.selectList(null);
-        model.addAttribute("depts", departments);
-        return "emp/update";
+//        List<Employees> employee = employeesMapper.selectById(map);
+        HashMap<String, Object> map = new HashMap<>();
+        String Id;
+        map.put("Id", id);
+        List<Employees> employees1 = employeesMapper.selectByMap(map);
+        boolean empty = CollectionUtils.isEmpty(employees1);
+        System.out.println(empty);
+
+        if (empty) {
+            return "redirect:/emps";
+        } else {
+            List<Departments> departments = departmentsMapper.selectList(null);
+            model.addAttribute("depts", departments);
+            return "emp/update";
+        }
+
+
     }
 
     /**
