@@ -18,25 +18,41 @@
       th:action="@{/user/login/zc}" th:href="@{/reg}">
     <img class="mb-4" th:src="@{/img/bootstrap-solid.svg}" alt="" width="72" height="72">
     <h1 class="h3 mb-3 font-weight-normal">请注册</h1>
-    <p style="color: red" th:text="${msg}" th:if="${not #strings.isEmpty(msg)}"></p>
-    <input type="text" name="username" class="form-control" th:placeholder="#{login.username}" required="" autofocus="">
-    <input class="form-control my-2" name="password" required="" th:placeholder="#{login.password}" type="password">
-    <input class="form-control" name="repeatPassword" required="" th:placeholder="#{login.repassword}" type="password">
+    <!--    <p style="color: red" th:text="${msg}" th:if="${not #strings.isEmpty(msg)}"></p>-->
+    <input class="form-control" name="username" required="required" th:placeholder="#{login.username}" type="text">
+    <input class="form-control my-2" name="password" required="required" th:placeholder="#{login.password}"
+           type="password">
+    <input class="form-control" name="repeatPassword" required="required" th:placeholder="#{login.repassword}"
+           type="password">
     <button class="btn btn-lg btn-primary btn-block" type="submit">[[注册]]</button>
     <div id="msg" style="display:none" th:text="${msg}">
     </div>
 
 </form>
 <script type="text/javascript">
+
     function validateForm() {
+        var reg = /^([a-zA-Z]+[0-9]+[!@#$%^&*]+)|([a-zA-Z]+[!@#$%^&*]+[0-9]+)|([0-9]+[!@#$%^&*]+[a-zA-Z]+)|([0-9]+[a-zA-Z]+[!@#$%^&*]+)|([!@#$%^&*]+[a-zA-Z]+[0-9]+)|([!@#$%^&*]+[0-9]+[a-zA-Z]+)$/;
+        var reg1 = /^[0-9a-zA-Z!@#$%^&*]{8,20}$/;
+        var flag = new RegExp("[`~!@#$^&*()=|{}':;',\\[\\].<>《》/?~！@#￥……&*（）——|{}【】‘；：”“'。，、？ ]")
+
         var x = document.forms["loginForm"]["password"].value;
         var y = document.forms["loginForm"]["repeatPassword"].value;
-        if (x !== y) {
-            alert("两次输入的密码不一致");
+        // if (x !== reg1){
+        //     alert("密码必须包含字母+数字+特殊符号！")
+        //     return false;
+        // }
+        if (flag.test(x)) {
+        } else {
+            alert("密码必须包含特殊符号！")
             return false;
         }
-
+        if (x !== y) {
+            alert("两次密码输入不一致")
+            return false;
+        }
     }
+
 </script>
 
 </body>

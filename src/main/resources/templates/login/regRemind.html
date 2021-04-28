@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
+    <meta content="width=device-width, initial-scale=1, shrink-to-fit=no" name="viewport">
+    <meta content="" name="description">
+    <meta content="" name="author">
+    <title>Signin Template for Bootstrap</title>
+    <!-- Bootstrap core CSS -->
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+    <!-- Custom styles for this template -->
+    <link rel="stylesheet" th:href="@{/css/signin.css}">
+</head>
+
+<body class="text-center">
+<form class="form-signin" id="loginForm" th:action="@{/zc/welcome}" th:href="@{/regRemind}">
+    <img alt="" class="mb-4" height="72" th:src="@{/img/bootstrap-solid.svg}" width="72">
+    <h1 class="h3 mb-3 font-weight-normal">WelcomeToYou!</h1>
+    <h1 class="h3 mb-3 font-weight-normal">恭喜您注册成功!</h1>
+
+    <a class="btn btn-lg btn-primary btn-block" href="/index.html">[[跳转登入]]</a>
+    <div id="msg" style="display:none" th:text="${msg}">
+    </div>
+
+</form>
+<script type="text/javascript">
+
+</script>
+
+</body>
+</html>

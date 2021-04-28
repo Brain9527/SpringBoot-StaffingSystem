@@ -57,11 +57,13 @@
 
                 <div class="form-group">
                     <lable>姓名</lable>
-                    <input th:value="${emp.getStaffName()}" type="text" class="form-control" name="staffName">
+                    <input class="form-control" name="staffName" required="required" th:value="${emp.getStaffName()}"
+                           type="text">
                 </div>
                 <div class="form-group">
                     <lable>邮箱</lable>
-                    <input th:value="${emp.getEmail()}" type="email" class="form-control" name="email">
+                    <input class="form-control" name="email" required="required" th:value="${emp.getEmail()}"
+                           type="email">
                 </div>
                 <div class="form-group">
                     <lable>性别</lable>

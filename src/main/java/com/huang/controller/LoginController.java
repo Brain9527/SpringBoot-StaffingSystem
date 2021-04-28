@@ -43,7 +43,7 @@ public class LoginController {
         }
     }
 
-
+    //登入页面
     @RequestMapping("/user/logout")
     public String logout(HttpSession session) {
         session.invalidate();
@@ -51,6 +51,7 @@ public class LoginController {
 
     }
 
+    //注册页面
     @GetMapping("/regs")
     public String add(Model model) {
         List<Consumer> consumers = consumerMapper.selectList(null);
@@ -58,18 +59,11 @@ public class LoginController {
         return "login/reg";
     }
 
+    //注册页面接口
     @RequestMapping("/user/login/zc")
     public String zc(Consumer consumer) {
         consumerMapper.insert(consumer);
-//        System.out.println(consumers);
         return "redirect:/index.html";
     }
-
-//    @GetMapping("/new")
-//    public String dda(Model model){
-//        return "reg/new";
-//
-//    }
-
 
 }

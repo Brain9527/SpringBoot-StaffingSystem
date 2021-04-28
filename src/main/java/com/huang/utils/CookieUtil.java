@@ -18,6 +18,7 @@ public class CookieUtil {
             Cookie nameCookie = new Cookie("name", java.net.URLEncoder.encode(name, "utf-8"));
             Cookie passwordCookie = new Cookie("password", password);
 
+
             //设置Cookie的父路径
             nameCookie.setPath(request.getContextPath() + "/");
             passwordCookie.setPath(request.getContextPath() + "/");
