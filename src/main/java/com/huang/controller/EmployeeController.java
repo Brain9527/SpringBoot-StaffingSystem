@@ -7,7 +7,6 @@ import com.huang.pojo.Employees;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.util.CollectionUtils;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
@@ -65,30 +64,20 @@ public class EmployeeController {
     @RequestMapping(value = "/emp", method = RequestMethod.POST)
     public String doAdd(Employees employees) {
         employeesMapper.insert(employees);
-
         return "redirect:/emps";
     }
 
     /**
-     * 更改员工页面
-     *
-     * @param model 视图模式
-     * @param id    要修改的员工ID
+     * @param model 视图模型
+     * @param id    员工ID
      */
     @GetMapping("/emp/{id}")
     public String update(Model model, @PathVariable("id") int id) {
         Employees employees = employeesMapper.selectById(id);
-        model.addAttribute("emp", employees);
-//        List<Employees> employee = employeesMapper.selectById(map);
-        HashMap<String, Object> map = new HashMap<>();
-        String userId;
-        map.put("userId", id);
-        List<Employees> employees1 = employeesMapper.selectByMap(map);
-        boolean empty = CollectionUtils.isEmpty(employees1);
-//        System.out.println(empty);
-        if (empty) {
+        if (employees == null) {
             return "redirect:/emps";
         } else {
+            model.addAttribute("emp", employees);
             List<Departments> departments = departmentsMapper.selectList(null);
             model.addAttribute("depts", departments);
             return "emp/update";

@@ -1,5 +1,6 @@
 package com.huang;
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.huang.dao.ConsumerMapper;
 import com.huang.dao.DepartmentsMapper;
 import com.huang.dao.EmployeesMapper;
@@ -40,13 +41,10 @@ public class SpringBootStaffingSystemApplicationTests {
 
     //查看所有用户
     @Test
-    public void SelectConsumer(){
+    public void SelectConsumer() {
         List<Consumer> consumers = consumerMapper.selectList(null);
         consumers.forEach(System.out::println);
     }
-
-
-
 
     //增加部门数据
     @Test
@@ -56,7 +54,6 @@ public class SpringBootStaffingSystemApplicationTests {
         departments.setDepartmentName("人才部");
         departmentsMapper.insert(departments);
     }
-
 
     //增加人员数据
     @Test
@@ -72,7 +69,7 @@ public class SpringBootStaffingSystemApplicationTests {
 
     //添加用户
     @Test
-    public void AddEEEE(){
+    public void AddEEEE() {
         Consumer consumer = new Consumer();
         consumer.setUserid(5);
         consumer.setUsername("aadd");
@@ -93,9 +90,10 @@ public class SpringBootStaffingSystemApplicationTests {
         int i = employeesMapper.deleteById(127);
         System.out.println("删除成功");
     }
+
     //根据id删除用户数据
     @Test
-    public void DeleteUser(){
+    public void DeleteUser() {
         int i = consumerMapper.deleteById(1);
         System.out.println("删除成功");
 
@@ -125,7 +123,7 @@ public class SpringBootStaffingSystemApplicationTests {
 
     //根据id修改用户数据
     @Test
-    public void UpdateConsumer(){
+    public void UpdateConsumer() {
         Consumer consumer = new Consumer();
         consumer.setUserid(2);
         consumer.setUsername("adminadmin");
@@ -162,9 +160,9 @@ public class SpringBootStaffingSystemApplicationTests {
 
     //根据人员id查询用户数据
     @Test
-    public void selectConsumer(){
+    public void selectConsumer() {
         Consumer consumer = consumerMapper.selectById(2);
-        if (consumer == null){
+        if (consumer == null) {
             System.out.println("未查询到此id的人员数据");
         } else {
             System.out.println(consumer);
@@ -172,5 +170,33 @@ public class SpringBootStaffingSystemApplicationTests {
     }
 
 
+    // 根据 Wrapper 条件，查询全部记录
+    //    List<Map<String, Object>> selectMaps(@Param(Constants.WRAPPER) Wrapper<T> queryWrapper);
+    //根据条件查询
+    @Test
+    public void selectAll() {
+        QueryWrapper<Employees> wrapper = new QueryWrapper<>();
+        wrapper.eq("staff_name", "");
+        List<Employees> employees = employeesMapper.selectList(wrapper);
+        System.out.println(employees);
+    }
 
+    //通过用户名字查询 邮箱
+    @Test
+    public void selectOne() {
+        QueryWrapper<Employees> wrapper = new QueryWrapper<>();
+        wrapper.eq("staff_name", "133333");
+        Employees employees = employeesMapper.selectOne(wrapper);
+        System.out.println(employees.getEmail());
+    }
+
+    //通过用户名字查询 邮箱
+    @Test
+    public void selectAll2() {
+        QueryWrapper<Employees> wrapper = new QueryWrapper<>();
+        wrapper.eq("staff_name", "a");
+        employeesMapper.selectList(wrapper).forEach(System.out::println);
+    }
 }
+
+

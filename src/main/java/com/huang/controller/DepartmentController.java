@@ -1,14 +1,14 @@
 package com.huang.controller;
 
 import com.huang.dao.DepartmentsMapper;
+import com.huang.error.NotFoundException;
 import com.huang.pojo.Departments;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.util.CollectionUtils;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.HashMap;
 import java.util.List;
 
 @Controller
@@ -41,11 +41,9 @@ public class DepartmentController {
 
     /**
      * 添加部门页面
-     *
-     * @param model 视图模型
      */
     @GetMapping("/add")
-    public String add(Model model) {
+    public String add() {
         return "dept/add";
     }
 
@@ -55,7 +53,7 @@ public class DepartmentController {
      * @param departments 部门实体
      */
     @RequestMapping(value = "/add", method = RequestMethod.POST)
-    public String doAdd(Departments departments) {
+    public String doAdd(@Validated Departments departments) {
         departmentsMapper.insert(departments);
         return "redirect:/depts";
     }
@@ -69,24 +67,23 @@ public class DepartmentController {
     @GetMapping("/dept/{ids}")
     public String update(Model model, @PathVariable("ids") int ids) {
         Departments departments = departmentsMapper.selectById(ids);
-        model.addAttribute("dept", departments);
-        HashMap<String, Object> map = new HashMap<>();
-        String id;
-        map.put("id", ids);
-        List<Departments> departments1 = departmentsMapper.selectByMap(map);
-        boolean empty = CollectionUtils.isEmpty(departments1);
-//        System.out.println(empty);
-        if (empty) {
-            return "redirect:/depts";
-        } else {
-            departmentsMapper.updateById(departments);
-            return "dept/update";
+        if (departments == null) {
+            throw new NotFoundException("数据不存在", 400);
         }
+        model.addAttribute("dept", departments);
+        return "dept/update";
     }
+
+    /**
+     * 返回部门管理
+     *
+     * @param departments 要更新的部门ID
+     */
     @PostMapping("/updateDept")
     public String doUpdate(Departments departments) {
         departmentsMapper.updateById(departments);
         return "redirect:/depts";
     }
+
 
 }

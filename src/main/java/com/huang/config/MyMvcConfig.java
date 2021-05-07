@@ -25,11 +25,11 @@ public class MyMvcConfig implements WebMvcConfigurer {
         return new MyLocaleResolver();
     }
 
-    //拦截器
+    //    拦截器
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
         registry.addInterceptor(new LoginHandlerInterceptor())
-                .addPathPatterns("/**").excludePathPatterns("/index.html", "/", "/user/login", "/css/*", "/js/**", "/img/**", "/regs", "/user/login/zc");
+                .addPathPatterns("/**").excludePathPatterns("/index.html", "/", "/user/login", "/css/*", "/js/**", "/img/**", "/regs", "/user/login/zc", "/user/login/regsa");
 
     }
 }

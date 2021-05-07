@@ -6,6 +6,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import javax.validation.constraints.NotBlank;
+
 //部门表
 @Data
 @NoArgsConstructor
@@ -13,5 +15,7 @@ import lombok.NoArgsConstructor;
 public class Departments {
     @TableId(type = IdType.AUTO)
     private Integer id;
+
+    @NotBlank(message = "部门名称不能为空")
     private String departmentName;
 }

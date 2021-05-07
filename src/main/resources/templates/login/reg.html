@@ -14,7 +14,8 @@
 </head>
 
 <body class="text-center">
-<form class="form-signin" id="loginForm" method="post" name="regForm" onsubmit="return validateForm()"
+<!--onsubmit="return validateForm()-->
+<form class="form-signin" id="loginForm" method="post" name="regForm"
       th:action="@{/user/login/zc}" th:href="@{/reg}">
     <img class="mb-4" th:src="@{/img/bootstrap-solid.svg}" alt="" width="72" height="72">
     <h1 class="h3 mb-3 font-weight-normal">请注册</h1>
@@ -24,36 +25,37 @@
            type="password">
     <input class="form-control" name="repeatPassword" required="required" th:placeholder="#{login.repassword}"
            type="password">
+
     <button class="btn btn-lg btn-primary btn-block" type="submit">[[注册]]</button>
     <div id="msg" style="display:none" th:text="${msg}">
     </div>
 
 </form>
-<script type="text/javascript">
+<!--<script type="text/javascript">-->
 
-    function validateForm() {
-        var reg = /^([a-zA-Z]+[0-9]+[!@#$%^&*]+)|([a-zA-Z]+[!@#$%^&*]+[0-9]+)|([0-9]+[!@#$%^&*]+[a-zA-Z]+)|([0-9]+[a-zA-Z]+[!@#$%^&*]+)|([!@#$%^&*]+[a-zA-Z]+[0-9]+)|([!@#$%^&*]+[0-9]+[a-zA-Z]+)$/;
-        var reg1 = /^[0-9a-zA-Z!@#$%^&*]{8,20}$/;
-        var flag = new RegExp("[`~!@#$^&*()=|{}':;',\\[\\].<>《》/?~！@#￥……&*（）——|{}【】‘；：”“'。，、？ ]")
+<!--    function validateForm() {-->
+<!--        var reg = /^([a-zA-Z]+[0-9]+[!@#$%^&*]+)|([a-zA-Z]+[!@#$%^&*]+[0-9]+)|([0-9]+[!@#$%^&*]+[a-zA-Z]+)|([0-9]+[a-zA-Z]+[!@#$%^&*]+)|([!@#$%^&*]+[a-zA-Z]+[0-9]+)|([!@#$%^&*]+[0-9]+[a-zA-Z]+)$/;-->
+<!--        var reg1 = /^[0-9a-zA-Z!@#$%^&*]{8,20}$/;-->
+<!--        var flag = new RegExp("^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$")-->
 
-        var x = document.forms["loginForm"]["password"].value;
-        var y = document.forms["loginForm"]["repeatPassword"].value;
-        // if (x !== reg1){
-        //     alert("密码必须包含字母+数字+特殊符号！")
-        //     return false;
-        // }
-        if (flag.test(x)) {
-        } else {
-            alert("密码必须包含特殊符号！")
-            return false;
-        }
-        if (x !== y) {
-            alert("两次密码输入不一致")
-            return false;
-        }
-    }
+<!--        var x = document.forms["loginForm"]["password"].value;-->
+<!--        var y = document.forms["loginForm"]["repeatPassword"].value;-->
+<!--        // if (x !== reg1){-->
+<!--        //     alert("密码必须包含字母+数字+特殊符号！")-->
+<!--        //     return false;-->
+<!--        // }-->
+<!--        if (flag.test(x)) {-->
+<!--        } else {-->
+<!--            alert("密码至少一个大写字母、一个小写字母、一位数字、一个特殊字符、最小八个长度")-->
+<!--            return false;-->
+<!--        }-->
+<!--        if (x !== y) {-->
+<!--            alert("两次密码输入不一致")-->
+<!--            return false;-->
+<!--        }-->
+<!--    }-->
 
-</script>
+<!--</script>-->
 
 </body>
 </html>
