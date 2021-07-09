@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="zh-CN" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1, shrink-to-fit=no" name="viewport">
+    <meta content="" name="description">
+    <meta content="" name="author">
+    <title>系统注册</title>
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+    <link rel="stylesheet" th:href="@{/css/signin.css}">
+</head>
+
+<body class="text-center">
+
+<form class="form-signin" id="loginForm" method="post">
+    <img class="mb-4" height="72" th:src="@{/img/bootstrap-solid.svg}" width="72" alt="">
+    <h1 class="h3 mb-3 font-weight-normal">[[#{reg.tip}]]</h1>
+
+    <p style="color: red" th:if="${not #strings.isEmpty(msg)}" th:text="${msg}"></p>
+
+    <input autofocus="" class="form-control" name="username" required="" th:placeholder="#{login.username}" type="text">
+    <input class="form-control" name="password" required="" th:placeholder="#{login.password}" type="password">
+
+    <button class="btn btn-lg btn-primary btn-block" type="submit">[[#{reg.btn}]]</button>
+
+
+    <el-row>
+        <a class="btn btn-lg btn-check" th:href="@{/user/login}">[[#{login.btn}]]</a>
+    </el-row>
+</form>
+
+</body>
+
+</html>
